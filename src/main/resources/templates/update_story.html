@@ -10,11 +10,12 @@
 <body>
 <div class="container">
     <h1>Update Story</h1>
-    <form action="#" th:action="@{/saveStory}" th:object="${storyModel}"
+    <form action="#" th:action="@{/saveStory}" th:object="${story}"
           method="POST">
-        <input type="hidden" th:field="*{id}">
-        <input type="text" th:field="*{storyName}" class="form-control mb-4 col-4">
-        <button type="submit" class="btn btn-info col-2"> Update Story</button>
+        <input type="hidden" th:field="*{storyId}" />
+            <input type="text" th:field="*{storyName}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{storyStory}" class="form-control mb-4 col-4">
+            <button type="submit" class="btn btn-info col-2"> Update Story</button>
     </form>
 
     <hr>

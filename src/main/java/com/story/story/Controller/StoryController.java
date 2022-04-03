@@ -18,7 +18,7 @@ public class StoryController {
 
     @GetMapping("/home")
     public String getHomePage(Model model) {
-        //model.addAttribute("storyList",storyService.getAllStory() );
+        model.addAttribute("storyList",storyService.getAllStory() );
         return "index";
     }
     @GetMapping("/add")
@@ -37,13 +37,13 @@ public class StoryController {
     public String updateStory(@PathVariable(value = "id") Integer id, Model model) {
         Optional<StoryModel> storyModel=storyService.getStoryByID(id);
         model.addAttribute("story", storyModel.get());
-        return "story_updated";
+        return "update_story";
 
     }
     @GetMapping("/show/{id}")
     public String show(@PathVariable(value = "id") Integer id) {
         storyService.getStoryByID(id);
-        return "j";
+        return "read_story";
     }
 
     @PostMapping("/saveStory")
