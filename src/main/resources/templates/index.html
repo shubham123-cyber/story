@@ -26,9 +26,10 @@
     <tbody>
     <tr th:each="StoryModel :${storyList}">
       <td th:text="${StoryModel.storyName}"></td>
-      <td> <a th:href="@{/updateStory/{id}(id=${StoryModel.storyId})}" class="btn btn-primary">Update</a>
+      <td> <a th:href="@{/show/{id}(id=${StoryModel.storyId})}" class="btn btn-primary">Read Story</a>
+          <a th:href="@{/updateStory/{id}(id=${StoryModel.storyId})}" class="btn btn-primary">Update</a>
           <a th:href="@{/delete/{id}(id=${StoryModel.storyId})}" class="btn btn-danger">Delete</a>
-          <a th:href="@{/show/{id}(id=${StoryModel.storyId})}" class="btn btn-primary">Read Story</a>
+
 
       </td>
     </tr>
