@@ -4,10 +4,14 @@ import com.story.story.Model.StoryModel;
 import com.story.story.Service.StoryService;
 import com.story.story.sqlRepo.Repo;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,20 +19,22 @@ import java.util.stream.Stream;
 
 //import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-
+//@RunWith(SpringRunner.class)
 public class storyTest {
-    @Autowired
+
+    @Spy
     @InjectMocks
-    private StoryService storyService;
+    private StoryService storyService = new StoryService();
+
     @MockBean
     private Repo repo;
 
-
     @Test
     public void getStory() {
-        when(repo.findAll()).thenReturn(Stream.of(new StoryModel(1,"hvghc","nvhgcjvhvhv"),new StoryModel(2,"rdtfghj","rdtfyghcgvhb")).collect(Collectors.toList()));
+        when(repo.findAll()).thenReturn(Stream.of(new StoryModel(1,"hvghc","nvhgcjvhvhv"),
+                new StoryModel(2,"rdtfghj","rdtfyghcgvhb")).collect(Collectors.toList()));
         assertEquals(2,storyService.getAllStory().size());
     }
 
@@ -45,11 +51,10 @@ public class storyTest {
         StoryModel storyModel=new StoryModel(7,"cxrycv","fgcgchc");
         StoryModel storyModel1=new StoryModel(7,"sedrftgyh","dxfcgvhberg");
         Optional<StoryModel> optional = Optional.of(storyModel);
-        when(storyService.getStoryByID(Mockito.anyInt())).thenReturn(optional);
+        doReturn(Optional.of(storyModel)).when(storyService).getStoryByID(Mockito.anyInt());
         when(repo.save(Mockito.any())).thenReturn(storyModel1);
-        // assertEquals(emploY,employeeService.updateById(employee));//it works
         assertNotNull(storyService.UpdateById(storyModel));
-
+        assertEquals(storyModel1.getStoryStory(), storyService.UpdateById(storyModel));
     }
 
     @Test
@@ -66,7 +71,7 @@ public class storyTest {
     @Test
     public void deleteEMp_when_not_null()
     {
-        StoryModel mpp=new StoryModel(5,"Andresxdrcfvghbes", "xdfcgvhbj nmfg vhbn");
+        //StoryModel mpp=new StoryModel(5,"Andresxdrcfvghbes", "xdfcgvhbj nmfg vhbn");
         assertNotNull(storyService.deletebyID(Mockito.anyInt()));
     }
 
