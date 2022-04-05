@@ -23,9 +23,9 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class StoryTest {
 
-    @Autowired
+    //@Autowired
     @InjectMocks
-    private StoryService storyService = new StoryService();
+    private StoryService storyService;
 
     @Mock
     private Repo sqlrepo;
