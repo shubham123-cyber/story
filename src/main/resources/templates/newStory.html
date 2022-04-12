@@ -15,8 +15,8 @@
 
         <form action="#" th:action="@{/saveStory}" th:object="${story}" method="POST">
             <input type="text" th:field="*{storyName}"
-                   placeholder="Story Name" class="form-control mb-4 col-4">
-            <textarea th:field="*{storyStory}" placeholder="Start Writing your Story..." rows="12" cols="100"></textarea>
+                   placeholder="Story Name" class="form-control mb-4 col-4" required>
+            <textarea th:field="*{storyStory}" placeholder="Start Writing your Story..." rows="12" cols="100" required></textarea>
             <button type="submit" class="btn btn-info col-2">Save Story</button>
         </form>
         <hr>

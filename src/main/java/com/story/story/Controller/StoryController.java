@@ -16,7 +16,7 @@ import javax.websocket.server.PathParam;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
+//url validation, user input validations
 @Controller
 public class StoryController {
 
@@ -41,16 +41,34 @@ public class StoryController {
         model.addAttribute("story", storyModel);
         return "newStory";
     }
-    //ADDING STORY USING POST METHOD---------------------------------------
+    //ADDING STORY USING POST METHOD ---------------------------------------
+    //using params-------------
+//    @PostMapping("/addS")
+//    public ResponseEntity<Optional<StoryModel>> add(StoryModel storyModel) {
+//
+//        try {
+//            storyService.insertStory(storyModel);
+//        } catch (Exception exception) {
+//            System.out.println("Error");
+//        }
+//        return new ResponseEntity<>(storyService.getStoryByID(storyModel.getStoryId()), HttpStatus.OK);
+//    }
     @PostMapping("/addS")
-    public ResponseEntity<Optional<StoryModel>> add(StoryModel storyModel) {
+    //usisng Object---------------------------
+    public ResponseEntity<StoryModel> add( @RequestBody StoryModel storyModel) {
 
+        StoryModel storyModel1 = null;
         try {
-            storyService.insertStory(storyModel);
+            storyModel1 = storyService.insertStory(storyModel);
+            if (storyModel1 == null) {
+                return null;
+            }
+
         } catch (Exception exception) {
             System.out.println("Error");
         }
-        return new ResponseEntity<>(storyService.getStoryByID(storyModel.getStoryId()), HttpStatus.OK);
+        return new ResponseEntity<>(storyModel1, HttpStatus.OK);
+
     }
 
     @GetMapping("/delete/{id}")

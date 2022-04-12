@@ -46,6 +46,12 @@ public class StoryService {
         }
         return null;
     }
-
+//    public StoryModel UpdateById(StoryModel storyModel) {
+//        Optional<StoryModel> storyModel1=getStoryByID(storyModel.getStoryId());
+//        if(storyModel1.isPresent()) {
+//            return repo.save(storyModel);
+//        }
+//        return null;
+//    }
 
 }
