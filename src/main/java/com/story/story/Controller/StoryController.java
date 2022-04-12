@@ -4,7 +4,6 @@ package com.story.story.Controller;
 import com.story.story.Model.StoryModel;
 import com.story.story.Service.StoryService;
 import com.story.story.sqlRepo.Repo;
-import jdk.jshell.execution.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-import java.util.Collections;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 //url validation, user input validations
@@ -55,7 +53,7 @@ public class StoryController {
 //    }
     @PostMapping("/addS")
     //usisng Object---------------------------
-    public ResponseEntity<StoryModel> add( @RequestBody StoryModel storyModel) {
+    public ResponseEntity<StoryModel> add( @Valid @RequestBody StoryModel storyModel) {
 
         StoryModel storyModel1 = null;
         try {
